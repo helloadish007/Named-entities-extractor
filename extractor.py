@@ -15,11 +15,11 @@ from webdriver_manager.chrome import ChromeDriverManager
 import os, sys
 
 @st.experimental_singleton
-def installff():
-  os.system('sbase install geckodriver')
-  os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
+#def installff():
+#  os.system('sbase install geckodriver')
+#  os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
 
-_ = installff()
+#_ = installff()
 
 
 
@@ -44,7 +44,10 @@ query = str(st.text_input('Enter Query:  ', ''))
 
 opts = FirefoxOptions()
 opts.add_argument("--headless")
-driver = webdriver.Firefox(options=opts)
+driver = webdriver.Firefox(
+    options=firefoxOptions,
+    executable_path="/home/appuser/.conda/bin/geckodriver",
+)
 
 #chrome_options = webdriver.ChromeOptions()
 #chrome_options.add_argument("--headless")
