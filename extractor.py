@@ -37,7 +37,7 @@ with st.sidebar.expander("Tool info: "):
 
 query = str(st.text_input('Enter Query:  ', ''))
 
-firefoxOptions = Options()
+firefoxOptions = FirefoxOptions()
 firefoxOptions.add_argument("--headless")
 driver = webdriver.Firefox(
     options=firefoxOptions,
