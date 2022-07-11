@@ -8,9 +8,19 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 from selenium import webdriver
+from selenium.webdriver import FirefoxOptions
 from st_aggrid import AgGrid
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 from webdriver_manager.chrome import ChromeDriverManager
+import os, sys
+
+@st.experimental_singleton
+def installff():
+  os.system('sbase install geckodriver')
+  os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
+
+_ = installff()
+
 
 
 st.header('NAMED ENTITIES EXTRACTOR TOOL')
@@ -31,9 +41,14 @@ with st.sidebar.expander("Tool info: "):
      st.sidebar.image("https://www.brosistech.com/wp-content/uploads/2019/05/deep-png.......png")
 
 query = str(st.text_input('Enter Query:  ', ''))
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--headless")
-driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+
+opts = FirefoxOptions()
+opts.add_argument("--headless")
+driver = webdriver.Firefox(options=opts)
+
+#chrome_options = webdriver.ChromeOptions()
+#chrome_options.add_argument("--headless")
+#driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
 
 #query = 'Putin Biden'
 if query:
