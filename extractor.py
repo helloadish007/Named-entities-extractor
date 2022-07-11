@@ -37,8 +37,8 @@ with st.sidebar.expander("Tool info: "):
 
 query = str(st.text_input('Enter Query:  ', ''))
 
-opts = FirefoxOptions()
-opts.add_argument("--headless")
+firefoxOptions = Options()
+firefoxOptions.add_argument("--headless")
 driver = webdriver.Firefox(
     options=firefoxOptions,
     executable_path="/home/appuser/.conda/bin/geckodriver",
