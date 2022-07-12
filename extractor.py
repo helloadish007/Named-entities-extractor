@@ -40,29 +40,12 @@ with st.sidebar.expander("Tool info: "):
 
 query = str(st.text_input('Enter Query:  ', ''))
 
-# firefoxOptions = FirefoxOptions()
-# firefoxOptions.add_argument("--headless")
-# driver = webdriver.Firefox(
-#     options=firefoxOptions,
-#     executable_path="/home/appuser/.conda/bin/geckodriver",
-# )
-
-# firefoxOptions = Options()
-# firefoxOptions.add_argument("--headless")
-# service = Service(GeckoDriverManager().install())
-# driver = webdriver.Firefox(
-#     options=firefoxOptions,
-#     service=service,
-# )
 
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 s = Service('/usr/local/bin/chromedriver')
 driver = webdriver.Chrome(options=chrome_options)
 
-#chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument("--headless")
-#driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
 
 #query = 'Putin Biden'
 if query:
@@ -85,29 +68,33 @@ if query:
             #st.set_page_config(page_title="Data", layout="wide") 
             st.write('**Links extracted from Google**')
             #st.title("Links extracted from Google")
-            gb = GridOptionsBuilder.from_dataframe(df)
-            gb.configure_side_bar()
-            gb.configure_default_column(groupable=True, value=True, enableRowGroup=True, aggFunc="sum", editable=True)
-            gridOptions = gb.build()
+#             gb = GridOptionsBuilder.from_dataframe(df)
+#             gb.configure_side_bar()
+#             gb.configure_default_column(groupable=True, value=True, enableRowGroup=True, aggFunc="sum", editable=True)
+#             gridOptions = gb.build()
 
-            AgGrid(df, gridOptions=gridOptions, enable_enterprise_modules=True)
+#             AgGrid(df, gridOptions=gridOptions, enable_enterprise_modules=True)
+             st.dataframe(df.to_string(index=False))
 
     d={}
     with st.spinner('Extracting data from matched links ...'):
-        for i in links:
-            html_text=requests.get(i).text
-            soup=BeautifulSoup(html_text,'lxml')
-            l=[]
-            ir=[]
-            for tag in soup.stripped_strings:
-                if (k[0].capitalize() or k[0].lower() or k[0].upper() or k[0]) in tag:
-                    l.append(tag)
-                    for j in l:
-                        if (k[1].capitalize() or k[1].lower() or k[1].upper() or k[1]) in j:
-                            ir.append(j)
-                            #print(i)
-            if ir!= []:
-                d[i]=list(set(ir))
+        try:
+            for i in links:
+                html_text=requests.get(i).text
+                soup=BeautifulSoup(html_text,'lxml')
+                l=[]
+                ir=[]
+                for tag in soup.stripped_strings:
+                    if (k[0].capitalize() or k[0].lower() or k[0].upper() or k[0]) in tag:
+                        l.append(tag)
+                        for j in l:
+                            if (k[1].capitalize() or k[1].lower() or k[1].upper() or k[1]) in j:
+                                ir.append(j)
+                                #print(i)
+                if ir!= []:
+                    d[i]=list(set(ir))
+        except:
+            st.caption('Connection issues found..')
         dfr=pd.DataFrame.from_dict(d, orient='index')
         if len(dfr):
             st.write('**Extracted Data**')
