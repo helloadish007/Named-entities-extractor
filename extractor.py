@@ -74,7 +74,7 @@ if query:
 #             gridOptions = gb.build()
 
 #             AgGrid(df, gridOptions=gridOptions, enable_enterprise_modules=True)
-             st.dataframe(df.to_string(index=False))
+            st.dataframe(df.to_string(index=False))
 
     d={}
     with st.spinner('Extracting data from matched links ...'):
