@@ -94,23 +94,20 @@ if query:
 
     d={}
     with st.spinner('Extracting data from matched links ...'):
-        try:
-            for i in links:
-                html_text=requests.get(i).text
-                soup=BeautifulSoup(html_text,'lxml')
-                l=[]
-                ir=[]
-                for tag in soup.stripped_strings:
-                    if (k[0].capitalize() or k[0].lower() or k[0].upper() or k[0]) in tag:
-                        l.append(tag)
-                        for j in l:
-                            if (k[1].capitalize() or k[1].lower() or k[1].upper() or k[1]) in j:
-                                ir.append(j)
-                                #print(i)
-                if ir!= []:
-                    d[i]=list(set(ir))
-        except:
-            st.caption('Connection issues found..')
+        for i in links:
+            html_text=requests.get(i).text
+            soup=BeautifulSoup(html_text,'lxml')
+            l=[]
+            ir=[]
+            for tag in soup.stripped_strings:
+                if (k[0].capitalize() or k[0].lower() or k[0].upper() or k[0]) in tag:
+                    l.append(tag)
+                    for j in l:
+                        if (k[1].capitalize() or k[1].lower() or k[1].upper() or k[1]) in j:
+                            ir.append(j)
+                            #print(i)
+            if ir!= []:
+                d[i]=list(set(ir))
         dfr=pd.DataFrame.from_dict(d, orient='index')
         if len(dfr):
             st.write('**Extracted Data**')
