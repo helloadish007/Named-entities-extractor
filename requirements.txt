@@ -6,3 +6,5 @@ beautifulsoup4==4.10.0
 selenium==3.141.0
 streamlit-aggrid==0.2.2.post2
 webdriver-manager==3.5.4
+selenium
+webdriver-manager
