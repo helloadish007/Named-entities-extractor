@@ -67,13 +67,6 @@ if query:
         if len(df):
             #st.set_page_config(page_title="Data", layout="wide") 
             st.write('**Links extracted from Google**')
-            #st.title("Links extracted from Google")
-#             gb = GridOptionsBuilder.from_dataframe(df)
-#             gb.configure_side_bar()
-#             gb.configure_default_column(groupable=True, value=True, enableRowGroup=True, aggFunc="sum", editable=True)
-#             gridOptions = gb.build()
-
-#             AgGrid(df, gridOptions=gridOptions, enable_enterprise_modules=True)
             st.dataframe(df.to_string(index=False))
 
     d={}
