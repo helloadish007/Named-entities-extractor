@@ -7,8 +7,17 @@ from math import ceil
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
+#from selenium import webdriver
+#from selenium.webdriver import FirefoxOptions
 from selenium import webdriver
-from selenium.webdriver import FirefoxOptions
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.firefox import GeckoDriverManager
+
 from st_aggrid import AgGrid
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 from webdriver_manager.chrome import ChromeDriverManager
@@ -37,11 +46,19 @@ with st.sidebar.expander("Tool info: "):
 
 query = str(st.text_input('Enter Query:  ', ''))
 
-firefoxOptions = FirefoxOptions()
+# firefoxOptions = FirefoxOptions()
+# firefoxOptions.add_argument("--headless")
+# driver = webdriver.Firefox(
+#     options=firefoxOptions,
+#     executable_path="/home/appuser/.conda/bin/geckodriver",
+# )
+
+firefoxOptions = Options()
 firefoxOptions.add_argument("--headless")
+service = Service(GeckoDriverManager().install())
 driver = webdriver.Firefox(
     options=firefoxOptions,
-    executable_path="/home/appuser/.conda/bin/geckodriver",
+    service=service,
 )
 
 #chrome_options = webdriver.ChromeOptions()
