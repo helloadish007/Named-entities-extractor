@@ -67,7 +67,7 @@ if query:
         if len(df):
             #st.set_page_config(page_title="Data", layout="wide") 
             st.write('**Links extracted from Google**')
-            st.write(df.to_string(index=False))
+            st.dataframe(df)
 
     d={}
     with st.spinner('Extracting data from matched links ...'):
