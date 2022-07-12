@@ -7,16 +7,10 @@ from math import ceil
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
-#from selenium import webdriver
-#from selenium.webdriver import FirefoxOptions
+
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 from st_aggrid import AgGrid
 from st_aggrid.grid_options_builder import GridOptionsBuilder
@@ -53,13 +47,18 @@ query = str(st.text_input('Enter Query:  ', ''))
 #     executable_path="/home/appuser/.conda/bin/geckodriver",
 # )
 
-firefoxOptions = Options()
-firefoxOptions.add_argument("--headless")
-service = Service(GeckoDriverManager().install())
-driver = webdriver.Firefox(
-    options=firefoxOptions,
-    service=service,
-)
+# firefoxOptions = Options()
+# firefoxOptions.add_argument("--headless")
+# service = Service(GeckoDriverManager().install())
+# driver = webdriver.Firefox(
+#     options=firefoxOptions,
+#     service=service,
+# )
+
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+s = Service('/usr/local/bin/chromedriver')
+driver = webdriver.Chrome(options=chrome_options)
 
 #chrome_options = webdriver.ChromeOptions()
 #chrome_options.add_argument("--headless")
