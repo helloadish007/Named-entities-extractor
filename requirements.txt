@@ -1,9 +1,8 @@
 pandas==1.1.5
 numpy==1.19.5
-streamlit
+streamlit==1.10.0
 protobuf~=3.19.0
 beautifulsoup4==4.10.0
-streamlit-aggrid==0.2.2.post2
 lxml==4.6.3
 selenium==4.2.0
 webdriver-manager
