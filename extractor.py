@@ -17,7 +17,8 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 from webdriver_manager.chrome import ChromeDriverManager
 import os, sys
 
-st.set_page_config('adish')
+st.set_page_config(page_title='Named Entities Extractor', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
+
 
 
 
