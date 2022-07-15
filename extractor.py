@@ -17,7 +17,7 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 from webdriver_manager.chrome import ChromeDriverManager
 import os, sys
 
-st.beta_set_page_config(page_title='Named entities extractor', page_icon = favicon, layout = 'wide', initial_sidebar_state = 'auto')
+st.set_page_config(bladibla)
 
 
 
