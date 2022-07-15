@@ -17,7 +17,7 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 from webdriver_manager.chrome import ChromeDriverManager
 import os, sys
 
-st.set_page_config(bladibla)
+st.set_page_config('adish')
 
 
 
