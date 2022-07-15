@@ -82,10 +82,10 @@ if query:
                     l=[]
                     ir=[]
                     for tag in soup.stripped_strings:
-                        if (k[0].capitalize() or k[0].lower() or k[0].upper() or k[0]) in tag:
+                        if (k[0].capitalize() or k[0].lower() or k[0].upper() or k[0]) or (k[1].capitalize() or k[1].lower() or k[1].upper() or k[1]) in tag:
                             l.append(tag)
                             for j in l:
-                                if (k[1].capitalize() or k[1].lower() or k[1].upper() or k[1]) in j:
+                                if (k[1].capitalize() or k[1].lower() or k[1].upper() or k[1]) or (k[0].capitalize() or k[0].lower() or k[0].upper() or k[0]) in j:
                                     ir.append(j)
                                     #print(i)
                     if ir!= []:
