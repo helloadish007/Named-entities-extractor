@@ -36,7 +36,7 @@ with st.sidebar.expander("Tool info: "):
      """,width=10,use_column_width=20)
      st.header(' The tool will be extracting data based on Google search results ( in order ) ')
      st.text('Creator : ADISH007')
-     st.sidebar.image("https://www.brosistech.com/wp-content/uploads/2019/05/deep-png.......png")
+     st.sidebar.image("https://www.scalevp.com/sites/default/files/designbig.jpg")
 
 query = str(st.text_input('Enter Query:  ', ''))
 
